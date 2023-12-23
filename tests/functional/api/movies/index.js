@@ -7,7 +7,7 @@ import movies from '../../../../initialise-dev/movies';
 
 const expect = chai.expect;
 let db;
-
+let token;
 describe("Movies endpoint", () => {
   before(() => {
     mongoose.connect(process.env.MONGO_DB, {
@@ -15,6 +15,7 @@ describe("Movies endpoint", () => {
       useUnifiedTopology: true,
     });
     db = mongoose.connection;
+    //写登陆请求获取响应，从响应中赋值给token，形成一个全局变量 substring（7），给每个测试用例的请求头都加上认证token
   });
 
   after(async () => {

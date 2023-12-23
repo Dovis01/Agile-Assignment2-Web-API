@@ -21,26 +21,27 @@
     "copy:all": "npm-run-all copy:nodeModules copy:public",
     "compile:all": "npm-run-all compile:models compile:errHandler compile:authenticate compile:init-dev compile:seed compile:app compile:db copy:all",
     "start:prod": "cross-env  MONGO_DB=mongodb://localhost/test NODE_ENV=development node build/index.js",
-    "test": "cross-env NODE_ENV=test mocha",
+    "postinstall": "rimraf ./build && npm run compile:all",
+    "test": "cross-env NODE_ENV=test SEED_DB=true mocha",
     "start": "babel-node index.js",
     "dev": " nodemon --exec npm start"
   },
   "author": "Shijin Zhang",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.23.3",
     "@babel/eslint-parser": "^7.23.3",
     "@babel/node": "^7.22.19",
     "@babel/preset-env": "^7.23.3",
-    "nodemon": "^3.0.1",
-    "@babel/cli": "^7.2.3",
     "chai": "^4.0.2",
     "cross-env": "^6.0.3",
     "mocha": "^8.1.3",
-    "supertest": "^4.0.2",
+    "ncp": "2.0.0",
+    "nodemon": "^3.0.1",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.0",
-    "ncp": "2.0.0"
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -49,6 +50,7 @@
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
+    "loglevel": "^1.7.1",
     "mongoose": "^8.0.1",
     "node-fetch": "^2.7.0"
   }

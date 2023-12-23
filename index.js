@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import loglevel from 'loglevel';
 import authenticate from './authenticate';
 import moviesRouter from './api/movies';
 import cors from 'cors';
@@ -7,6 +8,12 @@ import usersRouter from './api/users';
 import './seedData'
 import './db';
 import defaultErrHandler from './errHandler';
+
+if (process.env.NODE_ENV === 'test') {
+    loglevel.setLevel('warn')
+} else {
+    loglevel.setLevel('info')
+}
 
 dotenv.config();
 
@@ -21,6 +28,6 @@ app.use('/api/movies', moviesRouter);
 app.use(defaultErrHandler);
 
 let server = app.listen(port, () => {
-    console.info(`Server running at ${port}`);
+    loglevel.info(`Server running at ${port}`);
 });
 module.exports = server
