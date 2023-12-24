@@ -13,7 +13,13 @@ const authenticate = async (request, response, next) => {
         console.log(decoded);
 
         // Assuming decoded contains a username field
-        const user = await User.findByUserName(decoded.username);
+        let user;
+        if (decoded.username){
+            user = await User.findByUserName(decoded.username);
+        }
+        if(decoded.email){
+            user = await User.findByEmail(decoded.email);
+        }
         if (!user) {
             throw new Error('User not found');
         }
