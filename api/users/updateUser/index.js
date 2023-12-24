@@ -19,7 +19,7 @@ function validateUserUpdateFields(body) {
 router.put('/:username', asyncHandler(async (req, res) => {
     try {
         const username = req.params.username;
-        if (!req.body) {
+        if (Object.keys(req.body).length === 0) {
             return res.status(400).json({success: false, msg: 'Lack the update information.', code: 400});
         }
         if (req.body.password) {
