@@ -39,8 +39,6 @@ router.post('/', asyncHandler(async (req, res) => {
             await registerUser(req, res);
         }
     } catch (error) {
-        // Log the error and return a generic error message
-        console.error(error);
         res.status(500).json({success: false, msg: 'Internal server error.', code: 500});
     }
 }));
@@ -63,7 +61,6 @@ async function registerUser(req, res) {
         await User.create(req.body);
         res.status(201).json({success: true, msg: 'User successfully created.', code: 201});
     } catch (error) {
-        console.error(error);
         res.status(400).json({
             success: false,
             msg: 'Password must be between 8 and 15 characters long and contain at least one number, one letter and one special character.',

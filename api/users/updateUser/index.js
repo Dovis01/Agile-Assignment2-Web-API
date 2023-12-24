@@ -34,8 +34,6 @@ router.put('/:username', asyncHandler(async (req, res) => {
             await updateUserInfo(username, req, res);
         }
     } catch (error) {
-        // Log the error and return a generic error message
-        console.error(error);
         res.status(500).json({success: false, msg: 'Internal server error.', code: 500});
     }
 }));
@@ -62,7 +60,6 @@ async function updateUserInfo(username, req, res) {
             code: 200
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({success: false, msg: 'Internal server error', code: 500});
     }
 }
@@ -92,7 +89,6 @@ async function updateUserPassword(username, req, res) {
         delete updatedUser.password;
         res.status(200).json({success: true, msg: 'Password updated successfully', user: updatedUser, code: 200});
     } catch (error) {
-        console.error(error);
         res.status(500).json({success: false, msg: 'Internal server error', code: 500});
     }
 }
@@ -109,7 +105,6 @@ async function updateUserAvatar(username, req, res) {
         }
         res.status(200).json({success: true, msg: 'Avatar updated successfully', user: updatedUser, code: 200});
     } catch (error) {
-        console.error(error);
         res.status(500).json({success: false, msg: 'Internal server error', code: 500});
     }
 }

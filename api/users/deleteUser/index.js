@@ -14,8 +14,6 @@ router.delete('/:username', asyncHandler(async (req, res) => {
         }
         res.status(200).json({success: true, msg: 'User successfully deleted.', result: deletedUser, code: 200});
     } catch (error) {
-        // Log the error and return a generic error message
-        console.error(error);
         res.status(500).json({success: false, msg: 'Internal server error.',code: 500});
     }
 }));
