@@ -8,6 +8,7 @@ import cors from 'cors';
 import usersRouter from './api/users';
 import userUpdateRouter from './api/users/updateUser';
 import userDeleteRouter from './api/users/deleteUser';
+import reviewsRouter from './api/reviews';
 import './seedData'
 import './db';
 import defaultErrHandler from './errHandler';
@@ -32,6 +33,7 @@ app.use('/api/user/update', authenticate, userUpdateRouter);
 app.use('/api/user/delete', authenticate, userDeleteRouter);
 app.use('/api/movies', moviesRouter);
 app.use('/api/people', peopleRouter);
+app.use('/api/reviews', authenticate, reviewsRouter);
 app.use(defaultErrHandler);
 
 let server = app.listen(port, () => {
