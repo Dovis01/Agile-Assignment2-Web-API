@@ -5,6 +5,8 @@ import movieModel from '../api/movies/movieModel';
 import movies from './movies';
 import peopleModel from '../api/people/peopleModel';
 import people from './people';
+import reviewModel from '../api/reviews/reviewModel';
+import reviews from './reviews';
 
 dotenv.config();
 
@@ -44,8 +46,20 @@ export async function loadPeople() {
     }
 }
 
+export async function loadReviews() {
+    console.log('load reviews data');
+    try {
+        await reviewModel.deleteMany();
+        await reviewModel.collection.insertMany(reviews);
+        console.info(`${reviews.length} Reviews were successfully stored.`);
+    } catch (err) {
+        console.error(`failed to Load reviews Data: ${err}`);
+    }
+}
+
 if (process.env.NODE_ENV === 'development') {
     loadUsers();
     loadMovies();//ADD THIS LINE
     loadPeople();
+    loadReviews();
 }
