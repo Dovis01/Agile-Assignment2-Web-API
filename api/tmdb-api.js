@@ -256,3 +256,129 @@ export const getMovieReviews = (id) => {
     });
 };
 
+
+export const getPopularPeople = (page) => {
+    const pageLast = page * 2;
+    const pageFirst = pageLast - 1;
+
+    return Promise.all([
+        fetch(`https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageFirst}`),
+        fetch(`https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageLast}`)
+    ])
+        .then(responses => {
+            for (const response of responses) {
+                if (!response.ok) {
+                    throw new Error('Problem fetching movies');
+                }
+            }
+            return Promise.all(responses.map(response => response.json()));
+        })
+        .then(data => {
+            const peoplePage1 = data[0].results || [];
+            const peoplePage2 = data[1].results || [];
+            const combinedPeople = [...peoplePage1, ...peoplePage2];
+
+            return {
+                page: page,
+                results: combinedPeople,
+                total_results: 10000,
+                total_pages: 250
+            };
+        })
+        .catch((error) => {
+            throw error;
+        });
+};
+
+export const getWeekTrendingPeople = (page) => {
+    const pageLast = page * 2;
+    const pageFirst = pageLast - 1;
+
+    return Promise.all([
+        fetch(`https://api.themoviedb.org/3/trending/person/week?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageFirst}`),
+        fetch(`https://api.themoviedb.org/3/trending/person/week?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${pageLast}`)
+    ])
+        .then(responses => {
+            for (const response of responses) {
+                if (!response.ok) {
+                    throw new Error('Problem fetching movies');
+                }
+            }
+            return Promise.all(responses.map(response => response.json()));
+        })
+        .then(data => {
+            const peoplePage1 = data[0].results || [];
+            const peoplePage2 = data[1].results || [];
+            const combinedPeople = [...peoplePage1, ...peoplePage2];
+
+            return {
+                page: page,
+                results: combinedPeople,
+                total_results: 10000,
+                total_pages: 250
+            };
+        })
+        .catch((error) => {
+            throw error;
+        });
+};
+
+export const getPopularPeopleDetail = (id) => {
+    return fetch(
+        `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    ).then((response) => {
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+        return response.json();
+    })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const getPeopleImages = (id) => {
+    return fetch(
+        `https://api.themoviedb.org/3/person/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    ).then((response) => {
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+        return response.json();
+
+    })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const getPeopleMovieCredits = (id) => {
+    return fetch(
+        `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    ).then((response) => {
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+        return response.json();
+
+    })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const getPeopleTVCredits = (id) => {
+    return fetch(
+        `https://api.themoviedb.org/3/person/${id}/tv_credits?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    ).then((response) => {
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+        return response.json();
+
+    })
+        .catch((error) => {
+            throw error
+        });
+};
+
