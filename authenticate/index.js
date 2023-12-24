@@ -10,7 +10,6 @@ const authenticate = async (request, response, next) => {
         if (!token) throw new Error('Bearer token not found');
 
         const decoded = await jwt.verify(token, process.env.SECRET);
-        console.log(decoded);
 
         // Assuming decoded contains a username field
         let user;
