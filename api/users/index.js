@@ -33,6 +33,9 @@ router.post('/', asyncHandler(async (req, res) => {
             await authenticateUserByEmail(req, res);
         }
         if (req.query.action === 'register') {
+            if (!req.body.username || !req.body.email || !req.body.password) {
+                return res.status(400).json({success: false, msg: 'Username, email and password are required.', code: 400});
+            }
             await registerUser(req, res);
         }
     } catch (error) {
@@ -47,17 +50,26 @@ router.post('/', asyncHandler(async (req, res) => {
  * Post Functions
  * */
 async function registerUser(req, res) {
-    let userUsername = await User.findByUserName(req.body.username);
-    let userEmail = await User.findByEmail(req.body.email);
-    if (userUsername) {
-        return res.status(401).json({success: false, msg: 'Username already exists.', code: 401});
+    try {
+        let userUsername = await User.findByUserName(req.body.username);
+        let userEmail = await User.findByEmail(req.body.email);
+        if (userUsername) {
+            return res.status(401).json({success: false, msg: 'Username already exists.', code: 401});
+        }
+        if (userEmail) {
+            return res.status(401).json({success: false, msg: 'Email already exists.', code: 401});
+        }
+        // Add input validation logic here
+        await User.create(req.body);
+        res.status(201).json({success: true, msg: 'User successfully created.', code: 201});
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            success: false,
+            msg: 'Password must be between 8 and 15 characters long and contain at least one number, one letter and one special character.',
+            code: 400
+        });
     }
-    if (userEmail) {
-        return res.status(401).json({success: false, msg: 'Email already exists.', code: 401});
-    }
-    // Add input validation logic here
-    await User.create(req.body);
-    res.status(201).json({success: true, msg: 'User successfully created.', code: 201});
 }
 
 async function authenticateUserByUsername(req, res) {
