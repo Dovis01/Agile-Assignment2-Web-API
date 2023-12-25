@@ -83,7 +83,7 @@ export async function loadToWatchList() {
     }
 }
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.SEED_DB === 'true') {
     loadUsers();
     loadMovies();//ADD THIS LINE
     loadPeople();
