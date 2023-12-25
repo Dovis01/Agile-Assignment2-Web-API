@@ -31,10 +31,10 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:username', asyncHandler(async (req, res) => {
     const username = req.params.username;
     const moiveIds = await reviewModel.findByUserName(username);
-    if (moiveIds) {
-        res.status(200).json(moiveIds);
+    if (moiveIds.length === 0) {
+        res.status(404).json({success:false, message: 'The reviews you requested of this user could not be found.', status_code: 404});
     } else {
-        res.status(404).json({message: 'The reviews you requested of this user could not be found.', status_code: 404});
+        res.status(200).json(moiveIds);
     }
 }));
 
@@ -46,7 +46,7 @@ router.get('/:username/movies/:movieId', asyncHandler(async (req, res) => {
     if (reviews) {
         res.status(200).json(reviews);
     } else {
-        res.status(404).json({message: 'The reviews you requested could not be found.', status_code: 404});
+        res.status(404).json({success:false, message: 'The reviews you requested could not be found.', status_code: 404});
     }
 }));
 
@@ -59,7 +59,7 @@ router.get('/:reviewId/:username/movies/:movieId', asyncHandler(async (req, res)
     if (review) {
         res.status(200).json(review);
     } else {
-        res.status(404).json({message: 'The review you requested could not be found.', status_code: 404});
+        res.status(404).json({success:false, message: 'The review you requested could not be found.', status_code: 404});
     }
 }));
 
@@ -89,7 +89,7 @@ router.put('/:reviewId/:username/movies/:movieId', asyncHandler(async (req, res)
         const username = req.params.username;
         const reviewId = req.params.reviewId;
         if (!req.body.author || !req.body.rating || !req.body.content) {
-            return res.status(400).json({success: false, msg: 'Author,rating and content are required.'});
+            return res.status(400).json({success: false, msg: 'Author,rating and content are required.', code: 400});
         }
         await updateReview(movieId, username, reviewId, req, res);
     } catch (error) {
@@ -180,7 +180,7 @@ async function updateReview(movieId, username, reviewId, req, res) {
         );
 
         if (updatedReviews) {
-            const updatedReview = updatedReviews.reviews.find(review => review._id.toString() === reviewId);
+            const updatedReview = updatedReviews.reviews.find(review => review.id.toString() === reviewId);
             res.status(200).json({success: true, msg: 'The review is updated successfully.', result: updatedReview});
         } else {
             res.status(404).json({success: false, msg: 'The review document is not found to update.', code: 404});
