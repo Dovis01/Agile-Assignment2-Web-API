@@ -49,7 +49,7 @@ describe("Users endpoint", () => {
                 password: 'test456@',
             });
         } catch (err) {
-            console.error(`failed to Load user test Data: ${err}`);
+            console.error(`failed to Load users test Data: ${err}`);
         }
     });
     afterEach(() => {

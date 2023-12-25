@@ -34,7 +34,7 @@ describe("Movies endpoint", () => {
             await Movie.deleteMany();
             await Movie.collection.insertMany(movies);
         } catch (err) {
-            console.error(`failed to Load user Data: ${err}`);
+            console.error(`failed to Load movies test Data: ${err}`);
         }
     });
 
