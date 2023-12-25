@@ -22,6 +22,8 @@ stages:
   - build
   - test
   - staging
+  - deployment
+  - delivery
 
 # Jobs:
 
@@ -30,10 +32,10 @@ install_dependencies:
   script:
     - npm  ci
 
-Build_api:
+build_api:
   stage: build
   before_script:
-     - npm run clean
+    - npm run clean
   script:
     - npm run build
 
@@ -45,8 +47,6 @@ test_api:
 
 deploy_staging:
   image: ruby:latest
-  only:
-    - develop
   stage: staging
   before_script:
     - apt-get update -qy
@@ -55,3 +55,31 @@ deploy_staging:
   script:  
     - dpl --provider=heroku --app=$HEROKU_APP_NAME_STAGING --api-key=$HEROKU_API_KEY
     - echo "Deployed to staging server"
+
+continuous_deployment_production:
+  image: ruby:latest
+  only:
+    - main
+  stage: deployment
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
+    - echo "Deploy to production server automatically"
+
+continuous_delivery_production:
+  image: ruby:latest
+  only:
+    - develop
+  stage: delivery
+  when: manual
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
+    - echo "Deliver to production server manually"
+
