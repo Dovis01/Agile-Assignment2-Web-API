@@ -1,6 +1,10 @@
 # Assignment 2 - Agile Software Practice.
 
-Name: [your name] ...
+Name: Shijin Zhang
+
+Links:
++ Coveralls: https://coveralls.io/gitlab/zhang-zihan/movies-api-cicd-lab
++ [![Coverage Status](https://coveralls.io/repos/github/Dovis01/Agile-Assignment2-Web-API/badge.svg?branch=main)](https://coveralls.io/github/Dovis01/Agile-Assignment2-Web-API?branch=main)
 
 ## API endpoints.
 
