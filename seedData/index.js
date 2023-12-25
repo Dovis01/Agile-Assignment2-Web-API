@@ -9,6 +9,8 @@ import reviewModel from '../api/reviews/reviewModel';
 import reviews from './reviews';
 import favoriteModel from '../api/favorites/favoriteModel';
 import favorites from './favorites';
+import toWatchListModel from '../api/toWatchList/toWatchListModel';
+import toWatchList from './toWatchList';
 
 dotenv.config();
 
@@ -70,10 +72,22 @@ export async function loadFavorites() {
     }
 }
 
+export async function loadToWatchList() {
+    console.log('load toWatchList data');
+    try {
+        await toWatchListModel.deleteMany();
+        await toWatchListModel.collection.insertMany(toWatchList);
+        console.info(`${toWatchList.length} ToWatchList were successfully stored.`);
+    } catch (err) {
+        console.error(`failed to Load toWatchList Data: ${err}`);
+    }
+}
+
 if (process.env.NODE_ENV === 'development') {
     loadUsers();
     loadMovies();//ADD THIS LINE
     loadPeople();
     loadReviews();
     loadFavorites();
+    loadToWatchList();
 }
