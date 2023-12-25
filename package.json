@@ -22,9 +22,13 @@
     "compile:all": "npm-run-all compile:models compile:errHandler compile:authenticate compile:init-dev compile:seed compile:app compile:db copy:all",
     "start:prod": "cross-env  MONGO_DB=mongodb://localhost/test NODE_ENV=development node build/index.js",
     "postinstall": "rimraf ./build && npm run compile:all",
-    "test": "cross-env NODE_ENV=test SEED_DB=true mocha tests/**/*.js",
+    "test": "cross-env NODE_ENV=test SEED_DB=true nyc mocha tests/**/*.js",
     "start": "babel-node index.js",
-    "dev": " nodemon --exec npm start"
+    "dev": " nodemon --exec npm start",
+    "coverage": "nyc report --reporter=text-lcov | coveralls --repo-token=$COVERALLS_REPO_TOKEN"
+  },
+  "nyc": {
+    "exclude": ["moviesApiAssignment/seedData/index.js"]
   },
   "author": "Shijin Zhang",
   "license": "ISC",
@@ -35,11 +39,13 @@
     "@babel/node": "^7.22.19",
     "@babel/preset-env": "^7.23.3",
     "chai": "^4.0.2",
+    "coveralls": "^3.1.1",
     "cross-env": "^6.0.3",
     "mocha": "^8.1.3",
     "ncp": "2.0.0",
     "nodemon": "^3.0.1",
     "npm-run-all": "^4.1.5",
+    "nyc": "^15.1.0",
     "rimraf": "^3.0.0",
     "supertest": "^4.0.2"
   },
