@@ -54,7 +54,6 @@ router.get('/tmdb/discover', asyncHandler(async (req, res) => {
         const discoverMovies = await getDiscoverMovies(page);
         res.status(200).json(discoverMovies);
     } catch (error) {
-        console.log(error.message);
         res.status(500).json({success: false, message: 'Internal server error.', code: 500});
     }
 }));
