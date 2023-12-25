@@ -7,6 +7,8 @@ import peopleModel from '../api/people/peopleModel';
 import people from './people';
 import reviewModel from '../api/reviews/reviewModel';
 import reviews from './reviews';
+import favoriteModel from '../api/favorites/favoriteModel';
+import favorites from './favorites';
 
 dotenv.config();
 
@@ -57,9 +59,21 @@ export async function loadReviews() {
     }
 }
 
+export async function loadFavorites() {
+    console.log('load favorites data');
+    try {
+        await favoriteModel.deleteMany();
+        await favoriteModel.collection.insertMany(favorites);
+        console.info(`${favorites.length} Favorites were successfully stored.`);
+    } catch (err) {
+        console.error(`failed to Load favorites Data: ${err}`);
+    }
+}
+
 if (process.env.NODE_ENV === 'development') {
     loadUsers();
     loadMovies();//ADD THIS LINE
     loadPeople();
     loadReviews();
+    loadFavorites();
 }
