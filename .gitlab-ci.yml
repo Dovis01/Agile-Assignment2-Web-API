@@ -2,20 +2,20 @@
 image: node:latest
 
 variables:
-   npm_config_cache: "$CI_PROJECT_DIR/.npm"
-   NODE_ENV: 'test'
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  NODE_ENV: 'test'
 
 cache:
-   key:
-     files:
-        - package.json
-   paths:
-      - .npm
-      - node_modules
-      - build
+  key:
+    files:
+      - package.json
+  paths:
+    - .npm
+    - node_modules
+    - build
 
 services:
-   - mongo
+  - mongo
 
 stages:
   - install
@@ -42,6 +42,9 @@ build_api:
 test_api:
   stage: test
   script:
+    - export CI_BRANCH=$CI_COMMIT_REF_NAME
+    - echo "COMMIT_REF_NAME = $CI_COMMIT_REF_NAME"
+    - echo "CI_BRANCH = $CI_BRANCH"
     - npm test
     - npm run coverage
 
@@ -52,7 +55,7 @@ deploy_staging:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
-  script:  
+  script:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME_STAGING --api-key=$HEROKU_API_KEY
     - echo "Deployed to staging server"
 
