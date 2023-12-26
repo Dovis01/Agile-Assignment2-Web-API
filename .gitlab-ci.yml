@@ -43,8 +43,6 @@ test_api:
   stage: test
   script:
     - export CI_BRANCH=$CI_COMMIT_REF_NAME
-    - echo "COMMIT_REF_NAME = $CI_COMMIT_REF_NAME"
-    - echo "CI_BRANCH = $CI_BRANCH"
     - npm test
     - npm run coverage
 
