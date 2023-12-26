@@ -387,10 +387,12 @@ Links:
 ##### Staging Server:
 
 https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/movies
+https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/users
 
 ##### Production Server:
 
 https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/movies
+https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/users
 
 #### CI CD：
 
@@ -404,70 +406,68 @@ https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/movies
 ```shell
 ------------------------------------------------------|---------|----------|---------|---------|----
 File                                                  | % Stmts | % Branch | % Funcs | % Lines |     ------------------------------------------------------|---------|----------|---------|---------|----
-All files                                             |   96.86 |    70.52 |   99.04 |   98.98 |                                   
- moviesApiAssignment                                  |   97.36 |       75 |     100 |   97.29 |                                          
-  index.js                                            |   97.36 |       75 |     100 |   97.29 |                                        
+All files                                             |   96.94 |    70.52 |   99.04 |   99.09 |                                          
+ moviesApiAssignment                                  |   97.67 |       75 |     100 |   97.61 |                                          
+  index.js                                            |   97.67 |       75 |     100 |   97.61 |                                       
  moviesApiAssignment/api                              |   93.36 |    62.63 |   91.04 |   92.81 |                                          
   tmdb-api.js                                         |   93.36 |    62.63 |   91.04 |   92.81 | 
   
  moviesApiAssignment/api/favorites                    |   95.08 |    72.15 |     100 |   98.57 |                                          
   favoriteModel.js                                    |     100 |      100 |     100 |     100 |                                          
-  index.js                                            |   94.78 |    71.42 |     100 |   98.43 |                                      
+  index.js                                            |   94.78 |    71.42 |     100 |   98.43 |                                       
  moviesApiAssignment/api/movies                       |    98.1 |    84.95 |     100 |     100 |                                          
-  index.js                                            |   98.03 |    84.68 |     100 |     100 |                      
+  index.js                                            |   98.03 |    84.68 |     100 |     100 |                         
   movieModel.js                                       |     100 |      100 |     100 |     100 |                                          
  moviesApiAssignment/api/people                       |   98.54 |    81.25 |     100 |     100 |                                          
-  index.js                                            |   98.46 |    80.76 |     100 |     100 |                                
+  index.js                                            |   98.46 |    80.76 |     100 |     100 |                              
   peopleModel.js                                      |     100 |      100 |     100 |     100 |                                          
  moviesApiAssignment/api/reviews                      |    94.3 |    79.13 |     100 |   99.17 |                                          
-  index.js                                            |   93.88 |    78.76 |     100 |   99.09 |                                       
+  index.js                                            |   93.88 |    78.76 |     100 |   99.09 |                                        
   reviewModel.js                                      |     100 |      100 |     100 |     100 |                                          
  moviesApiAssignment/api/toWatchList                  |   95.08 |    72.15 |     100 |   98.57 |                                          
-  index.js                                            |   94.78 |    71.42 |     100 |   98.43 |                                      
+  index.js                                            |   94.78 |    71.42 |     100 |   98.43 |                                       
   toWatchListModel.js                                 |     100 |      100 |     100 |     100 |                                          
  moviesApiAssignment/api/users                        |   96.68 |    76.51 |     100 |     100 |                                          
-  index.js                                            |   97.39 |    85.26 |     100 |     100 |                              
-  userModel.js                                        |   94.44 |    54.05 |     100 |     100 |                                      
+  index.js                                            |   97.39 |    85.26 |     100 |     100 |                                
+  userModel.js                                        |   94.44 |    54.05 |     100 |     100 |                                   
  moviesApiAssignment/api/users/deleteUser             |   95.45 |       60 |     100 |     100 |                                          
   index.js                                            |   95.45 |       60 |     100 |     100 |                                       
  moviesApiAssignment/api/users/updateUser             |   95.69 |    80.26 |     100 |     100 |                                          
-  index.js                                            |   95.69 |    80.26 |     100 |     100 |                          
+  index.js                                            |   95.69 |    80.26 |     100 |     100 |                           
  moviesApiAssignment/authenticate                     |   88.88 |    56.81 |     100 |     100 |                                          
-  index.js                                            |   88.88 |    56.81 |     100 |     100 |                           
- moviesApiAssignment/db                               |   81.81 |      100 |      50 |      80 |                                          
-  index.js                                            |   81.81 |      100 |      50 |      80 |                                  
+  index.js                                            |   88.88 |    56.81 |     100 |     100 |                             
+ moviesApiAssignment/db                               |     100 |      100 |      50 |     100 |                                          
+  index.js                                            |     100 |      100 |      50 |     100 |                                          
  moviesApiAssignment/errHandler                       |      80 |       50 |     100 |      80 |                                          
   index.js                                            |      80 |       50 |     100 |      80 |                                         
  moviesApiAssignment/seedData                         |   94.17 |    60.93 |     100 |     100 |                                          
   favorites.js                                        |     100 |      100 |     100 |     100 |                                          
-  index.js                                            |   93.25 |    60.93 |     100 |     100 |                                      
+  index.js                                            |   93.25 |    60.93 |     100 |     100 |                                  
   movies.js                                           |     100 |      100 |     100 |     100 |                                          
   people.js                                           |     100 |      100 |     100 |     100 |                                          
-  reviews.js                                          |     100 |      100 |     100 |     100 |                                          
+  reviews.js                                          |     100 |      100 |     100 |     100 |                                           
   toWatchList.js                                      |     100 |      100 |     100 |     100 |                                          
   userAvatar.js                                       |     100 |      100 |     100 |     100 |                                          
   users.js                                            |     100 |      100 |     100 |     100 |                                          
  moviesApiAssignment/tests/functional/api/favorites   |    98.5 |    59.45 |     100 |     100 |                                          
-  index.js                                            |    98.5 |    59.45 |     100 |     100 |                                 
- moviesApiAssignment/tests/functional/api/movies      |   99.16 |    51.51 |     100 |     100 |                                          
-  index.js                                            |   99.16 |    51.51 |     100 |     100 |                               
- moviesApiAssignment/tests/functional/api/people      |   98.65 |    51.51 |     100 |     100 |                                          
-  index.js                                            |   98.65 |    51.51 |     100 |     100 |                                 
- moviesApiAssignment/tests/functional/api/reviews     |   98.97 |    59.45 |     100 |     100 |                                          
-  index.js                                            |   98.97 |    59.45 |     100 |     100 |                                 
- moviesApiAssignment/tests/functional/api/toWatchList |    98.5 |    59.45 |     100 |     100 |                                          
   index.js                                            |    98.5 |    59.45 |     100 |     100 |                                  
+ moviesApiAssignment/tests/functional/api/movies      |   99.16 |    51.51 |     100 |     100 |                                          
+  index.js                                            |   99.16 |    51.51 |     100 |     100 |                                 
+ moviesApiAssignment/tests/functional/api/people      |   98.65 |    51.51 |     100 |     100 |                                          
+  index.js                                            |   98.65 |    51.51 |     100 |     100 |                                  
+ moviesApiAssignment/tests/functional/api/reviews     |   98.97 |    59.45 |     100 |     100 |                                          
+  index.js                                            |   98.97 |    59.45 |     100 |     100 |                               
+ moviesApiAssignment/tests/functional/api/toWatchList |    98.5 |    59.45 |     100 |     100 |                                          
+  index.js                                            |    98.5 |    59.45 |     100 |     100 |                                   
  moviesApiAssignment/tests/functional/api/users       |   98.96 |    54.28 |     100 |     100 |                                          
-  index.js                                            |   98.96 |    54.28 |     100 |     100 |                                  
-------------------------------------------------------|---------|----------|---------|---------|----
-
+  index.js                                            |   98.96 |    54.28 |     100 |     100 |     ------------------------------------------------------|---------|----------|---------|---------|----
 ```
 
 #### Coveralls Server：
 
 Visit this coveralls server website to check Code Coverage Reports for the tests:  https://coveralls.io/github/Dovis01/Agile-Assignment2-Web-API
 
-
+![](./images/Coveralls.jpg)
 
 #### Incorporate the generation and publication of the code coverage reports as part of the CI pipeline:
 
@@ -522,4 +522,4 @@ When this movies-api server is running, you can visit this api server's document
 
 - Link: https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api-docs/
 
-![](../../../../Typora/Typora/PicturesStore/SwaggerAPI.png)
+![](./images/SwaggerAPI.png)
