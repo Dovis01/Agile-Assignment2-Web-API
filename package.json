@@ -17,8 +17,9 @@
     "compile:app": "babel index.js --out-dir build/",
     "compile:db": "babel ./db --out-dir build/db",
     "copy:nodeModules": "ncp ./node_modules/ build/node_modules",
+    "copy:swagger": "ncp ./swaggerAPI build/swaggerAPI",
     "copy:public": "ncp ./public build/public",
-    "copy:all": "npm-run-all copy:nodeModules copy:public",
+    "copy:all": "npm-run-all copy:nodeModules copy:public copy:swagger",
     "compile:all": "npm-run-all compile:models compile:errHandler compile:authenticate compile:init-dev compile:seed compile:app compile:db copy:all",
     "start:prod": "cross-env  MONGO_DB=mongodb://localhost/test NODE_ENV=development node build/index.js",
     "postinstall": "rimraf ./build && npm run compile:all",
@@ -58,6 +59,8 @@
     "jsonwebtoken": "^9.0.2",
     "loglevel": "^1.7.1",
     "mongoose": "^8.0.1",
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^2.7.0",
+    "swagger-ui-express": "^5.0.0",
+    "yamljs": "^0.3.0"
   }
 }

@@ -1,0 +1,942 @@
+openapi: 3.0.0
+info:
+  title: Web-API-CA2
+  description: >-
+    This API provides access to various functions of the Web-API-CA2 service, including moives information from tmdb, 
+    user management, and other some personal data of users.
+  contact:
+    name: Shijin Zhang
+    email: zsj1364226740@gmail.com
+  version: '1.0'
+servers:
+  - url: http://localhost:8080/api
+    variables: {}
+paths:
+  /movies/tmdb/discover:
+    get:
+      tags:
+        - Movies
+      summary: http://localhost:8080/api/movies/tmdb/discover?page=3
+      operationId: http://localhost:8080/api/movies/tmdb/discover?page=3
+      parameters:
+        - name: page
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 3
+      responses:
+        '200':
+          description: 'get discover movies from tmdb successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /movies/tmdb/nowplaying:
+    get:
+      tags:
+        - Movies
+      summary: http://localhost:8080/api/movies/tmdb/nowplaying?page=1
+      operationId: http://localhost:8080/api/movies/tmdb/nowplaying?page=1
+      parameters:
+        - name: page
+          in: query
+          description: 'get now playing movies from tmdb successfully'
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 1
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /movies/tmdb/590706:
+    get:
+      tags:
+        - Movies
+      summary: http://localhost:8080/api/movies/tmdb/movies/590706
+      operationId: http://localhost:8080/api/movies/tmdb/movies/590706
+      parameters: [ ]
+      responses:
+        '200':
+          description: 'get specific movie details from tmdb successfully'
+          headers: { }
+      deprecated: false
+  /movies/tmdb/590706/images:
+    get:
+      tags:
+        - Movies
+      summary: http://localhost:8080/api/movies/tmdb/movies/590706/images
+      operationId: http://localhost:8080/api/movies/tmdb/movies/590706/images
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific movie images from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /movies/tmdb/590706/videos:
+    get:
+      tags:
+        - Movies
+      summary: http://localhost:8080/api/movies/tmdb/movie/590706
+      operationId: http://localhost:8080/api/movies/tmdb/movie/590706
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific movie videos from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /movies/tmdb/590706/recommendations:
+    get:
+      tags:
+        - Movies
+      summary: http://localhost:8080/api/movies/tmdb/590706/videos
+      operationId: http://localhost:8080/api/movies/tmdb/590706/videos
+      parameters:
+        - name: page
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 1
+      responses:
+        '200':
+          description: 'get specific movie recommendations from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /movies/tmdb/590706/reviews:
+    get:
+      tags:
+        - Movies
+      summary: http://localhost:8080/api/movies/tmdb/590706/reviews
+      operationId: http://localhost:8080/api/movies/tmdb/590706/reviews
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific movie reviews from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /movies/tmdb/week_trending:
+    get:
+      tags:
+        - Movies
+      summary: http://localhost:8080/api/movies/tmdb/week_trending?page=3
+      operationId: http://localhost:8080/api/movies/tmdb/week_trending?page=3
+      parameters:
+        - name: page
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 1
+      responses:
+        '200':
+          description: 'get week trending movie from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /users/user1:
+    get:
+      tags:
+        - Users
+      summary: http://localhost:8080/api/users/user1
+      operationId: http://localhost:8080/api/users/user1
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific user information successfully'
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+        - Users
+      summary: http://localhost:8080/api/users
+      operationId: http://localhost:8080/api/users
+      parameters: []
+      responses:
+        '200':
+          description: 'get all users information successfully'
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - Users
+      summary: http://localhost:8080/api/users?action=register
+      operationId: http://localhost:8080/api/users?action=register
+      parameters:
+        - name: action
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: register
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/registerUserAction'
+                - example:
+                    username: user4
+                    email: zsj1364226740@gmail.com
+                    password: test123@
+            example:
+              username: user4
+              email: zsj1364226740@gmail.com
+              password: test123@
+        required: true
+      responses:
+        '200':
+          description: 'register user successfully'
+          headers: {}
+      deprecated: false
+  /user/delete/user4:
+    delete:
+      tags:
+        - Users
+      summary: http://localhost:8080/api/user/changes/user4
+      operationId: http://localhost:8080/api/user/changes/user4
+      parameters: []
+      responses:
+        '200':
+          description: 'delete specific user successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /user/update/Dovis:
+    put:
+      tags:
+        - Users
+      summary: http://localhost:8080/api/user/update/Dovis
+      operationId: http://localhost:8080/api/user/update/Dovis
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/updateUserDovisPassword'
+                - example:
+                    password: 'test123@'
+            example:
+              password: 'test123@'
+        required: true
+      responses:
+        '200':
+          description: 'update specific user password successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /user/update/user1:
+    put:
+      tags:
+        - Users
+      summary: http://localhost:8080/api/user/update/user1
+      operationId: http://localhost:8080/api/user/update/user1
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/httplocalhost8080apiuserupdateuser1request'
+                - example:
+                    avatar: data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAU3A+gDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6pooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKbk5xkGgB1FFFABRRQKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopM0poAKYZEXqwBpJT8vHSqr2m4l3b8PagB1zciNSA6hm6c1V2xQxs4uHaVupBrJ1iwM2pWs0bv9mU/OoPWuit7a22KY4wAOmaAMNlvLXN1DcMydTG/OauaXr9tfsYkdfPHVfStd41b7ygj3rjfE/hp4mk1DRR5d2BnaOjUAdjG+5fcVIMdq4rwXqlxLFvv22tnZIp6q1dp7igBaKaj7sjoadQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRSEgUALRQDRmgAoopu7nAFADqKac54PFRm4j3Fdw3elAEw6UVl6lrFrY4EsuZTwqiqd74khso1eaJ2z/dHSgDoKY8iIMuwFYaeKNPkt2cSqhHXdxip7E6feMZIrtLgt2D9KANAXStxGC3uKe0pEZYqRgdKhA+y5O5fL9+MVXuNVs2AjMgYk4IU9KALVvLK6M7Jx2FN+2DO2SN1P0qKLUbdZNiuBGB1ParUskf2dpNwZcdRzQBAbuJ5QMkKtSiZJpTGpyAMmqMUa29q8k2Ar8gmo7G3kfcyEhTzn1oAs7HkvshcQjgVeVArEgVRtbrZI0c3HoavoQRwQaAHCmt/+ql6f4UhdR1YUAcD41tjpd/Fe2zbftXySIOhPrXT+E7/7fpEZZ90sfyP9aj1m1TULeRLpQVJxH7e9cl4Iu59O8R3umzptGcjP8Q9aAPSWAIoB7UdfpSD7pxQA6ikUjp3pksyRgBjyeAPWgCTNFIoxS0ABOKBRiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoopGYKMk4FAATUTTgHABNR7nnf8AdnbEOp9asLgKfagBoZmH3SKcBxUP2yHLZbG3rmof7WsQ203MYPoTQBbAbmo3Lx8lgRVObXtNhzvu48+gNUx4j0y5yI58+hIxg0BY2hJtXdIQo96HuI0GWYY9q59dRW/DRuVAHDMWxx61GL3TNNi/03UI2T+HDZoHY6D7VG6tsYZHrxWffwXpgkltgiy44HrWZN4k8NFVV9QiUNz9/FZmpeN/DsKFbfWkLrxt3ZpBYsWGkxy3qSahN+/bkqexrdn0OM2rxRtkt3bmvJPEnj3RvOimi1DLjrtNP034uaZE6rd30ronIx3ouFmdJe+ArvbLsm8xXOSDxWCvgOaxvUk/tCa2U84jfitOX43+HvJwkF1ITxgKa5/UvixC0imPSHC5ypZsZo0HqXdci8Qo6R6Xdvcg/Lh+M1Al/qGipnWNMnPcvGc1BqPxOv7mKJrbQVTb91g2K5S58W+KNSvVeRV8oH/VbuvtSA9K0HxdoOpSlReeVL0ME3ymtDU7jU7Vo5dIkE1ozDKE147ql7Pewyi60SGORRkTpww/GsvTdU8S28ZbS9REqpz5Mp9KAsfQF54zEYjg1eykt4v43AytaVhr0bx79NmSS2PQE9K+b7X4q6xNcNZarbxsi8MjDjPtV/RdWe1vhPZXvluxJ8lvu5piPoW91Rgoa7tmEJOGdR+tR295c2t9G8M6z2svAUn5hXE+DvinDOj6Zr0ca3IOAT90itLxLLa3dmLvQbpEvoTuKA8EUxHqETF4w2etVL4OD+7jLE9xXB+D/G8V2uyaVRMvyyxMcEH2rul1GN4C6EFuwoAryyM9mVUfOOx61ynieWO01jT9TjUib7j/AErpNWaRbq1liQgsCGFcf4nM5RI5VGd29D/ShAehafqNveQxSQyBvMGQKss8ce4uwGK4Xwzc/ZdXGnFNolQSxOenuK7doUZgZBuY0AUrrVYLXa7n7xxxTYVNzfLcucRAfIPWlvbWC9c24UKR94gdKhn3W8KWyn/Vj5WoA2mO1STSIDjmoLZmlRN/UDk+tWTQAUYzQOaKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKQrnvS0122/WgA4UZJwPU1VlvLXeUeQcflVC8gkvbgwmRlhHLMD0rPuJ7OBW82VLeBOPNc8tQBeutdWF/JtLZ5T2IHFVUbWL+NmGIMHofSuL1v4iadY+ZBpr/aJEGS46V51rfxb1a5SVLQrGnTg80rjSPZr65uLVzHcMJ5D2U4A+tcX4p1/SNLjlub64jLKOIo2+bNeG6t4s1++iEbXskcRPLA81jqsMxkaW6kluB3JyDU8xaiejTfEoRyCeDTN0R+4X6muf1Xx/rOqXJMRislBwqgYzXHXE12wEaTgKDwGqCQTSFT5ikr1x3pXGkdvBP4guopLi81v7MR0UNjcKu6fLplzGUvNYuWmx03cZrg5LyUsv2g7gBxzTVuj5gdAqEHoKVyrHX3Nroc0+x7+YsOpYnip4dN8JjG6eU56tmuGub9/PLbUOeuKja+3btgC+xouFj0q30PwsiF98j85BJpGfQ4+LaFSqnjPWvOF1SRiuRlV7Cpv7a/55wgetO5Nj1GDXzCgDWNsIugZV5qC9v7a+UvLYt5cf8S9685i8RSwo6SEBH6Vbs9e8uPa10xT+7TuKx2a61KIhuVY7VDhQ3Wri6ppckCGGcJM3O09q4hdfsVkJkkdgP4Oxp9vqOkTO+TiRunoKBWOvn1qPyxGWMid9p5qikUV3MVtnZYzyxU4xWFJe2lvKrQ7HJGCSaRtXQkx24SPPXB60BYs61osLk75WAHRl61zck19pBIbMsBPyueorVn1rMZhbAcd81mXGogxlC3mKe
+            example:
+              avatar: data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAU3A+gDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6pooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKbk5xkGgB1FFFABRRQKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopM0poAKYZEXqwBpJT8vHSqr2m4l3b8PagB1zciNSA6hm6c1V2xQxs4uHaVupBrJ1iwM2pWs0bv9mU/OoPWuit7a22KY4wAOmaAMNlvLXN1DcMydTG/OauaXr9tfsYkdfPHVfStd41b7ygj3rjfE/hp4mk1DRR5d2BnaOjUAdjG+5fcVIMdq4rwXqlxLFvv22tnZIp6q1dp7igBaKaj7sjoadQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRSEgUALRQDRmgAoopu7nAFADqKac54PFRm4j3Fdw3elAEw6UVl6lrFrY4EsuZTwqiqd74khso1eaJ2z/dHSgDoKY8iIMuwFYaeKNPkt2cSqhHXdxip7E6feMZIrtLgt2D9KANAXStxGC3uKe0pEZYqRgdKhA+y5O5fL9+MVXuNVs2AjMgYk4IU9KALVvLK6M7Jx2FN+2DO2SN1P0qKLUbdZNiuBGB1ParUskf2dpNwZcdRzQBAbuJ5QMkKtSiZJpTGpyAMmqMUa29q8k2Ar8gmo7G3kfcyEhTzn1oAs7HkvshcQjgVeVArEgVRtbrZI0c3HoavoQRwQaAHCmt/+ql6f4UhdR1YUAcD41tjpd/Fe2zbftXySIOhPrXT+E7/7fpEZZ90sfyP9aj1m1TULeRLpQVJxH7e9cl4Iu59O8R3umzptGcjP8Q9aAPSWAIoB7UdfpSD7pxQA6ikUjp3pksyRgBjyeAPWgCTNFIoxS0ABOKBRiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoopGYKMk4FAATUTTgHABNR7nnf8AdnbEOp9asLgKfagBoZmH3SKcBxUP2yHLZbG3rmof7WsQ203MYPoTQBbAbmo3Lx8lgRVObXtNhzvu48+gNUx4j0y5yI58+hIxg0BY2hJtXdIQo96HuI0GWYY9q59dRW/DRuVAHDMWxx61GL3TNNi/03UI2T+HDZoHY6D7VG6tsYZHrxWffwXpgkltgiy44HrWZN4k8NFVV9QiUNz9/FZmpeN/DsKFbfWkLrxt3ZpBYsWGkxy3qSahN+/bkqexrdn0OM2rxRtkt3bmvJPEnj3RvOimi1DLjrtNP034uaZE6rd30ronIx3ouFmdJe+ArvbLsm8xXOSDxWCvgOaxvUk/tCa2U84jfitOX43+HvJwkF1ITxgKa5/UvixC0imPSHC5ypZsZo0HqXdci8Qo6R6Xdvcg/Lh+M1Al/qGipnWNMnPcvGc1BqPxOv7mKJrbQVTb91g2K5S58W+KNSvVeRV8oH/VbuvtSA9K0HxdoOpSlReeVL0ME3ymtDU7jU7Vo5dIkE1ozDKE147ql7Pewyi60SGORRkTpww/GsvTdU8S28ZbS9REqpz5Mp9KAsfQF54zEYjg1eykt4v43AytaVhr0bx79NmSS2PQE9K+b7X4q6xNcNZarbxsi8MjDjPtV/RdWe1vhPZXvluxJ8lvu5piPoW91Rgoa7tmEJOGdR+tR295c2t9G8M6z2svAUn5hXE+DvinDOj6Zr0ca3IOAT90itLxLLa3dmLvQbpEvoTuKA8EUxHqETF4w2etVL4OD+7jLE9xXB+D/G8V2uyaVRMvyyxMcEH2rul1GN4C6EFuwoAryyM9mVUfOOx61ynieWO01jT9TjUib7j/AErpNWaRbq1liQgsCGFcf4nM5RI5VGd29D/ShAehafqNveQxSQyBvMGQKss8ce4uwGK4Xwzc/ZdXGnFNolQSxOenuK7doUZgZBuY0AUrrVYLXa7n7xxxTYVNzfLcucRAfIPWlvbWC9c24UKR94gdKhn3W8KWyn/Vj5WoA2mO1STSIDjmoLZmlRN/UDk+tWTQAUYzQOaKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKQrnvS0122/WgA4UZJwPU1VlvLXeUeQcflVC8gkvbgwmRlhHLMD0rPuJ7OBW82VLeBOPNc8tQBeutdWF/JtLZ5T2IHFVUbWL+NmGIMHofSuL1v4iadY+ZBpr/aJEGS46V51rfxb1a5SVLQrGnTg80rjSPZr65uLVzHcMJ5D2U4A+tcX4p1/SNLjlub64jLKOIo2+bNeG6t4s1++iEbXskcRPLA81jqsMxkaW6kluB3JyDU8xaiejTfEoRyCeDTN0R+4X6muf1Xx/rOqXJMRislBwqgYzXHXE12wEaTgKDwGqCQTSFT5ikr1x3pXGkdvBP4guopLi81v7MR0UNjcKu6fLplzGUvNYuWmx03cZrg5LyUsv2g7gBxzTVuj5gdAqEHoKVyrHX3Nroc0+x7+YsOpYnip4dN8JjG6eU56tmuGub9/PLbUOeuKja+3btgC+xouFj0q30PwsiF98j85BJpGfQ4+LaFSqnjPWvOF1SRiuRlV7Cpv7a/55wgetO5Nj1GDXzCgDWNsIugZV5qC9v7a+UvLYt5cf8S9685i8RSwo6SEBH6Vbs9e8uPa10xT+7TuKx2a61KIhuVY7VDhQ3Wri6ppckCGGcJM3O09q4hdfsVkJkkdgP4Oxp9vqOkTO+TiRunoKBWOvn1qPyxGWMid9p5qikUV3MVtnZYzyxU4xWFJe2lvKrQ7HJGCSaRtXQkx24SPPXB60BYs61osLk75WAHRl61zck19pBIbMsBPyueorVn1rMZhbAcd81mXGogxlC3mKe
+        required: true
+      responses:
+        '200':
+          description: 'update specific user avatar successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /user/update/user2:
+    put:
+      tags:
+        - Users
+      summary: http://localhost:8080/api/user/update/user2
+      operationId: http://localhost:8080/api/user/update/user2
+      parameters: [ ]
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/httplocalhost8080apiuserupdateDovisRequest1'
+                - example:
+                    firstName: shihai
+                    lastName: adjodao
+                    phoneNumber: '3090192809'
+                    email: oiadjoawjdoai@hmaio.com
+                    city: iqoijd
+                    country: doqihdwo
+                    address: dhqoiwdhoq
+            example:
+              firstName: shihai
+              lastName: adjodao
+              phoneNumber: '3090192809'
+              email: oiadjoawjdoai@hmaio.com
+              city: iqoijd
+              country: doqihdwo
+              address: dhqoiwdhoq
+        required: true
+      responses:
+        '200':
+          description: 'update specific user profile information successfully'
+          headers: { }
+      deprecated: false
+      security:
+        - bearer: [ ]
+  /people/12799:
+    get:
+      tags:
+        - People
+      summary: http://localhost:8080/api/people/12799
+      operationId: http://localhost:8080/api/people/12799
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific popular people details in local successfully'
+          headers: {}
+      deprecated: false
+  /people:
+    get:
+      tags:
+        - People
+      summary: http://localhost:8080/api/people/
+      operationId: http://localhost:8080/api/people/
+      parameters: []
+      responses:
+        '200':
+          description: 'get all popular people in local successfully'
+          headers: {}
+      deprecated: false
+  /people/tmdb/12799:
+    get:
+      tags:
+        - People
+      summary: http://localhost:8080/api/people/tmdb/12799
+      operationId: http://localhost:8080/api/people/tmdb/12799
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific popular people details from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /people/tmdb/12799/images:
+    get:
+      tags:
+        - People
+      summary: http://localhost:8080/api/people/tmdb/12799/images
+      operationId: http://localhost:8080/api/people/tmdb/12799/images
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific popular people images from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /people/tmdb/12799/tv_credits:
+    get:
+      tags:
+        - People
+      summary: http://localhost:8080/api/people/tmdb/12799/tv_credits
+      operationId: http://localhost:8080/api/people/tmdb/12799/tv_credits
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific popular people tv credits details from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /people/tmdb/12799/movie_credits:
+    get:
+      tags:
+        - People
+      summary: http://localhost:8080/api/people/tmdb/12799/movie_credits
+      operationId: http://localhost:8080/api/people/tmdb/12799/movie_credits
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific popular people movie credits details from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /people/tmdb/popular_people:
+    get:
+      tags:
+        - People
+      summary: http://localhost:8080/api/people/tmdb/popular_people?page=4
+      operationId: http://localhost:8080/api/people/tmdb/popular_people?page=4
+      parameters:
+        - name: page
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 4
+      responses:
+        '200':
+          description: 'get all popular people from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /people/tmdb/week_trending:
+    get:
+      tags:
+        - People
+      summary: http://localhost:8080/api/people/tmdb/week_trending?page=5
+      operationId: http://localhost:8080/api/people/tmdb/week_trending?page=5
+      parameters:
+        - name: page
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 5
+      responses:
+        '200':
+          description: 'get all week trending people from tmdb successfully'
+          headers: {}
+      deprecated: false
+  /favorites:
+    get:
+      tags:
+        - Favorites
+      summary: http://localhost:8080/api/favorites
+      operationId: http://localhost:8080/api/favorites
+      parameters: []
+      responses:
+        '200':
+          description: 'get all users favorites data in local successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /favorites/user1:
+    get:
+      tags:
+        - Favorites
+      summary: http://localhost:8080/api/favorites/user1
+      operationId: http://localhost:8080/api/favorites/user1
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific user all favorite movies in local successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /favorites/user1/movies/385687:
+    post:
+      tags:
+        - Favorites
+      summary: http://localhost:8080/api/favorites/user1/movies/695721
+      operationId: http://localhost:8080/api/favorites/user1/movies/695721
+      parameters: []
+      responses:
+        '200':
+          description: 'add specific movie to specific user favorite list successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    delete:
+      tags:
+        - Favorites
+      summary: http://localhost:8080/api/favorites/user1/movies/385687
+      operationId: http://localhost:8080/api/favorites/user1/movies/385687
+      parameters: []
+      responses:
+        '200':
+          description: 'delete specific movie from specific user favorite list successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /favorites/Dovis/movies/385687:
+    post:
+      tags:
+        - Favorites
+      summary: http://localhost:8080/api/favorites/Dovis/movies/385687
+      operationId: http://localhost:8080/api/favorites/Dovis/movies/385687
+      parameters: []
+      responses:
+        '200':
+          description: 'add the first specific movie to a new user favorite list successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /favorites/user2/movies/726209:
+    delete:
+      tags:
+        - Favorites
+      summary: http://localhost:8080/api/favorites/user3/movies/3856871
+      operationId: http://localhost:8080/api/favorites/user3/movies/3856871
+      parameters: []
+      responses:
+        '200':
+          description: 'delete the last specific movie from specific user favorite list successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /toWatchList:
+    get:
+      tags:
+        - ToWatchList
+      summary: http://localhost:8080/api/toWatchList
+      operationId: http://localhost:8080/api/toWatchList
+      parameters: []
+      responses:
+        '200':
+          description: 'get all users to watch list data in local successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /toWatchList/user1:
+    get:
+      tags:
+        - ToWatchList
+      summary: http://localhost:8080/api/toWatchList/user1
+      operationId: http://localhost:8080/api/toWatchList/user1
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific user all to watch list movies in local successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /toWatchList/Dovis/movies/507089:
+    post:
+      tags:
+        - ToWatchList
+      summary: http://localhost:8080/api/toWatchList/Dovis/movies/507089
+      operationId: http://localhost:8080/api/toWatchList/Dovis/movies/507089
+      parameters: []
+      responses:
+        '200':
+          description: 'add the first specific movie to specific user to watch list successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    delete:
+      tags:
+        - ToWatchList
+      summary: http://localhost:8080/api/toWatchList/Dovis/movies/507089
+      operationId: http://localhost:8080/api/toWatchList/Dovis/movies/507089
+      parameters: []
+      responses:
+        '200':
+          description: 'delete the last specific movie from specific user to watch list successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /toWatchList/user1/movies/670292:
+    post:
+      tags:
+        - ToWatchList
+      summary: http://localhost:8080/api/toWatchList/user1/movies/670292
+      operationId: http://localhost:8080/api/toWatchList/user1/movies/670292
+      parameters: []
+      responses:
+        '200':
+          description: 'add new specific movie to specific existing user to watch list successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    delete:
+      tags:
+        - ToWatchList
+      summary: http://localhost:8080/api/toWatchList/user1/movies/6702921
+      operationId: http://localhost:8080/api/toWatchList/user1/movies/6702921
+      parameters: []
+      responses:
+        '200':
+          description: 'delete specific movie from specific existing user to watch list successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /reviews:
+    get:
+      tags:
+        - Reviews
+      summary: http://localhost:8080/api/reviews
+      operationId: http://localhost:8080/api/reviews
+      parameters: []
+      responses:
+        '200':
+          description: 'get all users reviews data in local successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /reviews/user1/movies/897087:
+    get:
+      tags:
+        - Reviews
+      summary: http://localhost:8080/api/reviews/user1/movies/897087
+      operationId: http://localhost:8080/api/reviews/user1/movies/897087
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific user all reviews for specific movie in local successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    post:
+      tags:
+        - Reviews
+      summary: http://localhost:8080/api/reviews/user1/movies/897087
+      operationId: Post/http://localhost:8080/api/reviews/user1/movies/897087
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/httplocalhost8080apireviewsuser1movies897087request'
+                - example:
+                    author: user6464661
+                    rating: 3
+                    content: Well, that4646456464645666 is so cool. I want to watch it again!!!
+            example:
+              author: user6464661
+              rating: 3
+              content: Well, that4646456464645666 is so cool. I want to watch it again!!!
+        required: true
+      responses:
+        '200':
+          description: 'add new specific review for specific movie from specific user successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /reviews/6585ac3a63fa247a73957bca/user1/movies/897087:
+    get:
+      tags:
+        - Reviews
+      summary: http://localhost:8080/api/reviews/6585ac3a63fa247a73957bca/user1/movies/897087
+      operationId: http://localhost:8080/api/reviews/6585ac3a63fa247a73957bca/user1/movies/897087
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific user specific review for specific movie in local successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /reviews/user1:
+    get:
+      tags:
+        - Reviews
+      summary: http://localhost:8080/api/reviews/user1
+      operationId: http://localhost:8080/api/reviews/user1
+      parameters: []
+      responses:
+        '200':
+          description: 'get specific user all reviews data in local successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /reviews/user4/movies/897087:
+    post:
+      tags:
+        - Reviews
+      summary: http://localhost:8080/api/reviews/user4/movies/897087
+      operationId: http://localhost:8080/api/reviews/user4/movies/897087
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/httplocalhost8080apireviewsuser4movies897087request'
+                - example:
+                    author: user4
+                    rating: 5
+                    content: Well, that is so cool. I want to watch it again!!!
+            example:
+              author: user4
+              rating: 5
+              content: Well, that is so cool. I want to watch it again!!!
+        required: true
+      responses:
+        '200':
+          description: 'add the first new specific review for specific movie from specific user successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /reviews/6585ac3a63fa247a73957bc7/user1/movies/897087:
+    put:
+      tags:
+        - Reviews
+      summary: http://localhost:8080/api/reviews/6585ac3a63fa247a73957bc7/user1/movies/897087
+      operationId: http://localhost:8080/api/reviews/6585ac3a63fa247a73957bc7/user1/movies/897087
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/httplocalhost8080apireviews6582f6bea58ec972820cf8aduser1movies897087request'
+                - example:
+                    author: Dovis1
+                    rating: 2
+                    content: Bad, that is so cool. I want to watch it again!!!
+            example:
+              author: Dovis1
+              rating: 2
+              content: Bad, that is so cool. I want to watch it again!!!
+        required: true
+      responses:
+        '200':
+          description: 'update specific user specific review for specific movie successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /reviews/6585ac3a63fa247a73957bc9/user1/movies/897087:
+    delete:
+      tags:
+        - Reviews
+      summary: http://localhost:8080/api/reviews/6585ac3a63fa247a73957bc9/user1/movies/897087
+      operationId: http://localhost:8080/api/reviews/6585ac3a63fa247a73957bc9/user1/movies/897087
+      parameters: []
+      responses:
+        '200':
+          description: 'delete specific user specific review for specific movie successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /reviews/6585ac3a63fa247a73957bcc/user4/movies/897087:
+    delete:
+      tags:
+        - Reviews
+      summary: http://localhost:8080/api/reviews/6585ac3a63fa247a73957bcc/user4/movies/897087
+      operationId: http://localhost:8080/api/reviews/6585ac3a63fa247a73957bcc/user4/movies/897087
+      parameters: []
+      responses:
+        '200':
+          description: 'delete the last specific review from specific user for specific movie successfully'
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+components:
+  schemas:
+    registerUserAction:
+      title: registerUserAction
+      required:
+        - username
+        - email
+        - password
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        username: Dovis
+        email: zsj1364226740@gmail.com
+        password: test123@
+    usersAuthMethodEmail:
+      title: usersAuthMethodEmail
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: 134119874@gmail.com
+        password: test123@
+    usersAuthMethodUsername:
+      title: usersAuthMethodUsername
+      required:
+        - username
+        - password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      example:
+        username: user1
+        password: test123@
+    updateUserDovisPassword:
+      title: updateUserDovisPassword
+      required:
+        - password
+      type: object
+      properties:
+        password:
+          type: string
+      example:
+        password: ' '
+    httplocalhost8080apiuserupdateDovisRequest1:
+      title: httplocalhost8080apiuserupdateDovisRequest1
+      required:
+        - firstName
+        - lastName
+        - phoneNumber
+        - email
+        - city
+        - country
+        - address
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        address:
+          type: string
+      example:
+        firstName: shihai
+        lastName: adjodao
+        phoneNumber: '3090192809'
+        email: oiadjoawjdoai@hmaio.com
+        city: iqoijd
+        country: doqihdwo
+        address: dhqoiwdhoq
+    httplocalhost8080apiuserupdateuser1request:
+      title: httplocalhost8080apiuserupdateuser1request
+      required:
+        - avatar
+      type: object
+      properties:
+        avatar:
+          type: string
+      example:
+        avatar: data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAU3A+gDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6pooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKbk5xkGgB1FFFABRRQKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopM0poAKYZEXqwBpJT8vHSqr2m4l3b8PagB1zciNSA6hm6c1V2xQxs4uHaVupBrJ1iwM2pWs0bv9mU/OoPWuit7a22KY4wAOmaAMNlvLXN1DcMydTG/OauaXr9tfsYkdfPHVfStd41b7ygj3rjfE/hp4mk1DRR5d2BnaOjUAdjG+5fcVIMdq4rwXqlxLFvv22tnZIp6q1dp7igBaKaj7sjoadQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRSEgUALRQDRmgAoopu7nAFADqKac54PFRm4j3Fdw3elAEw6UVl6lrFrY4EsuZTwqiqd74khso1eaJ2z/dHSgDoKY8iIMuwFYaeKNPkt2cSqhHXdxip7E6feMZIrtLgt2D9KANAXStxGC3uKe0pEZYqRgdKhA+y5O5fL9+MVXuNVs2AjMgYk4IU9KALVvLK6M7Jx2FN+2DO2SN1P0qKLUbdZNiuBGB1ParUskf2dpNwZcdRzQBAbuJ5QMkKtSiZJpTGpyAMmqMUa29q8k2Ar8gmo7G3kfcyEhTzn1oAs7HkvshcQjgVeVArEgVRtbrZI0c3HoavoQRwQaAHCmt/+ql6f4UhdR1YUAcD41tjpd/Fe2zbftXySIOhPrXT+E7/7fpEZZ90sfyP9aj1m1TULeRLpQVJxH7e9cl4Iu59O8R3umzptGcjP8Q9aAPSWAIoB7UdfpSD7pxQA6ikUjp3pksyRgBjyeAPWgCTNFIoxS0ABOKBRiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoopGYKMk4FAATUTTgHABNR7nnf8AdnbEOp9asLgKfagBoZmH3SKcBxUP2yHLZbG3rmof7WsQ203MYPoTQBbAbmo3Lx8lgRVObXtNhzvu48+gNUx4j0y5yI58+hIxg0BY2hJtXdIQo96HuI0GWYY9q59dRW/DRuVAHDMWxx61GL3TNNi/03UI2T+HDZoHY6D7VG6tsYZHrxWffwXpgkltgiy44HrWZN4k8NFVV9QiUNz9/FZmpeN/DsKFbfWkLrxt3ZpBYsWGkxy3qSahN+/bkqexrdn0OM2rxRtkt3bmvJPEnj3RvOimi1DLjrtNP034uaZE6rd30ronIx3ouFmdJe+ArvbLsm8xXOSDxWCvgOaxvUk/tCa2U84jfitOX43+HvJwkF1ITxgKa5/UvixC0imPSHC5ypZsZo0HqXdci8Qo6R6Xdvcg/Lh+M1Al/qGipnWNMnPcvGc1BqPxOv7mKJrbQVTb91g2K5S58W+KNSvVeRV8oH/VbuvtSA9K0HxdoOpSlReeVL0ME3ymtDU7jU7Vo5dIkE1ozDKE147ql7Pewyi60SGORRkTpww/GsvTdU8S28ZbS9REqpz5Mp9KAsfQF54zEYjg1eykt4v43AytaVhr0bx79NmSS2PQE9K+b7X4q6xNcNZarbxsi8MjDjPtV/RdWe1vhPZXvluxJ8lvu5piPoW91Rgoa7tmEJOGdR+tR295c2t9G8M6z2svAUn5hXE+DvinDOj6Zr0ca3IOAT90itLxLLa3dmLvQbpEvoTuKA8EUxHqETF4w2etVL4OD+7jLE9xXB+D/G8V2uyaVRMvyyxMcEH2rul1GN4C6EFuwoAryyM9mVUfOOx61ynieWO01jT9TjUib7j/AErpNWaRbq1liQgsCGFcf4nM5RI5VGd29D/ShAehafqNveQxSQyBvMGQKss8ce4uwGK4Xwzc/ZdXGnFNolQSxOenuK7doUZgZBuY0AUrrVYLXa7n7xxxTYVNzfLcucRAfIPWlvbWC9c24UKR94gdKhn3W8KWyn/Vj5WoA2mO1STSIDjmoLZmlRN/UDk+tWTQAUYzQOaKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKQrnvS0122/WgA4UZJwPU1VlvLXeUeQcflVC8gkvbgwmRlhHLMD0rPuJ7OBW82VLeBOPNc8tQBeutdWF/JtLZ5T2IHFVUbWL+NmGIMHofSuL1v4iadY+ZBpr/aJEGS46V51rfxb1a5SVLQrGnTg80rjSPZr65uLVzHcMJ5D2U4A+tcX4p1/SNLjlub64jLKOIo2+bNeG6t4s1++iEbXskcRPLA81jqsMxkaW6kluB3JyDU8xaiejTfEoRyCeDTN0R+4X6muf1Xx/rOqXJMRislBwqgYzXHXE12wEaTgKDwGqCQTSFT5ikr1x3pXGkdvBP4guopLi81v7MR0UNjcKu6fLplzGUvNYuWmx03cZrg5LyUsv2g7gBxzTVuj5gdAqEHoKVyrHX3Nroc0+x7+YsOpYnip4dN8JjG6eU56tmuGub9/PLbUOeuKja+3btgC+xouFj0q30PwsiF98j85BJpGfQ4+LaFSqnjPWvOF1SRiuRlV7Cpv7a/55wgetO5Nj1GDXzCgDWNsIugZV5qC9v7a+UvLYt5cf8S9685i8RSwo6SEBH6Vbs9e8uPa10xT+7TuKx2a61KIhuVY7VDhQ3Wri6ppckCGGcJM3O09q4hdfsVkJkkdgP4Oxp9vqOkTO+TiRunoKBWOvn1qPyxGWMid9p5qikUV3MVtnZYzyxU4xWFJe2lvKrQ7HJGCSaRtXQkx24SPPXB60BYs61osLk75WAHRl61zck19pBIbMsBPyueorVn1rMZhbAcd81mXGogxlC3mKe
+    httplocalhost8080apireviewsuser1movies897087request:
+      title: httplocalhost8080apireviewsuser1movies897087request
+      required:
+        - author
+        - rating
+        - content
+      type: object
+      properties:
+        author:
+          type: string
+        rating:
+          type: integer
+          format: int32
+        content:
+          type: string
+      example:
+        author: user6464661
+        rating: 3
+        content: Well, that4646456464645666 is so cool. I want to watch it again!!!
+    httplocalhost8080apireviewsuser4movies897087request:
+      title: httplocalhost8080apireviewsuser4movies897087request
+      required:
+        - author
+        - rating
+        - content
+      type: object
+      properties:
+        author:
+          type: string
+        rating:
+          type: integer
+          format: int32
+        content:
+          type: string
+      example:
+        author: user4
+        rating: 5
+        content: Well, that is so cool. I want to watch it again!!!
+    httplocalhost8080apireviews6582f6bea58ec972820cf8aduser1movies897087request:
+      title: httplocalhost8080apireviews6582f6bea58ec972820cf8aduser1movies897087request
+      required:
+        - author
+        - rating
+        - content
+      type: object
+      properties:
+        author:
+          type: string
+        rating:
+          type: integer
+          format: int32
+        content:
+          type: string
+      example:
+        author: Dovis1
+        rating: 2
+        content: Bad, that is so cool. I want to watch it again!!!
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security: []
+tags:
+  - name: Movies
+  - name: Users
+  - name: People
+  - name: Favorites
+  - name: ToWatchList
+  - name: Reviews
