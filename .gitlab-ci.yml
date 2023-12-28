@@ -46,7 +46,7 @@ test_api:
     - npm test
     - npm run coverage
 
-deploy_staging:
+deploy_staging_heroku:
   image: ruby:latest
   stage: staging
   before_script:
@@ -59,8 +59,6 @@ deploy_staging:
 
 deploy_staging_netlify:
   image: node:latest
-  only:
-    - develop
   stage: staging
   before_script:
     - npm install netlify-cli -g
