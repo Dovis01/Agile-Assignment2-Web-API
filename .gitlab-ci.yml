@@ -57,6 +57,17 @@ deploy_staging:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME_STAGING --api-key=$HEROKU_API_KEY
     - echo "Deployed to staging server"
 
+deploy_staging_netlify:
+  image: node:latest
+  only:
+    - develop
+  stage: staging
+  before_script:
+    - npm install netlify-cli -g
+  script:
+    - netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+    - echo "Deployed to staging server"
+
 continuous_deployment_production:
   image: ruby:latest
   only:
