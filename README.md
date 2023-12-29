@@ -480,7 +480,21 @@ All files                                             |   96.94 |    70.52 |   9
 
 Visit this coveralls server website to check Code Coverage Reports for the tests:  https://coveralls.io/github/Dovis01/Agile-Assignment2-Web-API
 
+Upload to coveralls server from local:
+
+`.coveralls.yml`: https://github.com/Dovis01/Agile-Assignment2-Web-API/blob/main/.coveralls.yml
+
+`package.json` : https://github.com/Dovis01/Agile-Assignment2-Web-API/blob/main/package.json
+
+```yaml
+repo_token: <Your Repo Token>
+```
+
+Evidence:
+
 ![](./images/Coveralls.jpg)
+
+![](./images/coveralls2.jpg)
 
 #### Incorporate the generation and publication of the code coverage reports as part of the CI pipeline:
 
@@ -551,6 +565,7 @@ after_success:
 #### Travis CI Platform:
 
 I have added a new CI method for uploading the Code Coverage Reports by  Travis CI.
+
 `.travis.yml`: https://github.com/Dovis01/Agile-Assignment2-Web-API/blob/main/.travis.yml
 
 ![](./images/Travis.png)
