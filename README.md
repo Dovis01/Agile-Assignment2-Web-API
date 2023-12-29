@@ -387,9 +387,9 @@ Links:
 
 ##### Staging Server:
 
-https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/movies
-https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/users
-https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/movies/tmdb/discover?page=1
+- https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/movies
+- https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/users
+- https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/movies/tmdb/discover?page=1
 
 Evidence:
 
@@ -397,9 +397,9 @@ Evidence:
 
 ##### Production Server:
 
-https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/movies
-https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/users
-https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/movies/tmdb/discover?page=1
+- https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/movies
+- https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/users
+- https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/movies/tmdb/discover?page=1
 
 Evidence:
 
