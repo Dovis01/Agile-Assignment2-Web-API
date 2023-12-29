@@ -6,7 +6,8 @@ Links:
 + Coveralls: https://coveralls.io/github/Dovis01/Agile-Assignment2-Web-API
 + Gitlab: https://gitlab.com/Dovis01/agile-assignment2-web-api
 + Github: https://github.com/Dovis01/Agile-Assignment2-Web-API
-+ [![Coverage Status](https://coveralls.io/repos/github/Dovis01/Agile-Assignment2-Web-API/badge.svg?branch=main)](https://coveralls.io/github/Dovis01/Agile-Assignment2-Web-API?branch=main)
++ Netlify: https://app.netlify.com/teams/zsj1364226740/overview
++ [![Coverage Status](https://coveralls.io/repos/github/Dovis01/Agile-Assignment2-Web-API/badge.svg?branch=main)](https://coveralls.io/github/Dovis01/Agile-Assignment2-Web-API?branch=main)  [![Netlify Status](https://api.netlify.com/api/v1/badges/110d7dc8-a290-4322-8715-dfdabd300e89/deploy-status)](https://app.netlify.com/sites/peppy-lokum-ce89b7/deploys) [![Build Status](https://app.travis-ci.com/liang765407782/sjz-coveralls.svg?branch=main)](https://app.travis-ci.com/liang765407782/sjz-coveralls)
 
 ## API endpoints.
 
@@ -388,11 +389,21 @@ Links:
 
 https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/movies
 https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/users
+https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api/movies/tmdb/discover?page=1
+
+Evidence:
+
+![](./images/PostmanHerokuStaging.jpg)
 
 ##### Production Server:
 
 https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/movies
 https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/users
+https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/movies/tmdb/discover?page=1
+
+Evidence:
+
+![](./images/PostmanHerokuProduction.jpg)
 
 #### CI CD：
 
@@ -404,8 +415,9 @@ https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api/users
 #### Istanbul Generated Code Coverage Reports:
 
 ```shell
-------------------------------------------------------|---------|----------|---------|---------|----
-File                                                  | % Stmts | % Branch | % Funcs | % Lines |     ------------------------------------------------------|---------|----------|---------|---------|----
+------------------------------------------------------|---------|----------|---------|---------|
+File                                                  | % Stmts | % Branch | % Funcs | % Lines |
+------------------------------------------------------|---------|----------|---------|---------|
 All files                                             |   96.94 |    70.52 |   99.04 |   99.09 |                                          
  moviesApiAssignment                                  |   97.67 |       75 |     100 |   97.61 |                                          
   index.js                                            |   97.67 |       75 |     100 |   97.61 |                                       
@@ -460,7 +472,8 @@ All files                                             |   96.94 |    70.52 |   9
  moviesApiAssignment/tests/functional/api/toWatchList |    98.5 |    59.45 |     100 |     100 |                                          
   index.js                                            |    98.5 |    59.45 |     100 |     100 |                                   
  moviesApiAssignment/tests/functional/api/users       |   98.96 |    54.28 |     100 |     100 |                                          
-  index.js                                            |   98.96 |    54.28 |     100 |     100 |     ------------------------------------------------------|---------|----------|---------|---------|----
+  index.js                                            |   98.96 |    54.28 |     100 |     100 |
+------------------------------------------------------|---------|----------|---------|---------|
 ```
 
 #### Coveralls Server：
@@ -476,6 +489,8 @@ Visit this coveralls server website to check Code Coverage Reports for the tests
 `package.json` : https://github.com/Dovis01/Agile-Assignment2-Web-API/blob/main/package.json
 
 `.gitlab-ci.yml`: https://github.com/Dovis01/Agile-Assignment2-Web-API/blob/main/.gitlab-ci.yml
+
+`.travis.yml`: https://github.com/Dovis01/Agile-Assignment2-Web-API/blob/main/.travis.yml
 
 ###### Sample code for package.json :
 
@@ -516,10 +531,49 @@ test_api:
 ...    
 ```
 
+###### Sample code for .travis.yml :
+
+```yaml
+...
+before_script:
+  - npm run clean
+  - npm run build
+
+script:
+  - npm test
+
+after_success:
+  - npm run coverage
+```
+
+
+
+#### Travis CI Platform:
+
+I have added a new CI method for uploading the Code Coverage Reports by  Travis CI.
+`.travis.yml`: https://github.com/Dovis01/Agile-Assignment2-Web-API/blob/main/.travis.yml
+
+![](./images/Travis.png)
+
+
+
+#### Netlify Deployment Platform:
+
+I have deployed some endpoints into the Netlify platform as new deployment platform additionally.
+
+![](./images/Netlify1.jpg)
+
+![](./images/Netlify2.jpg)
+
+
+
 #### Swagger Web APIs Document:
 
 When this movies-api server is running, you can visit this api server's document by visiting swagger.
 
-- Link: https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api-docs/
+- Link: 
+  - https://agile-web-api-ca2-produc-zsj-215579e0f1c1.herokuapp.com/api-docs/
+  - https://agile-web-api-ca2-staging-zsj-fd0f5b4f395b.herokuapp.com/api-docs/
+
 
 ![](./images/SwaggerAPI.png)
